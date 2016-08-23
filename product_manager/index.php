@@ -1,16 +1,55 @@
 <?php
 require('../model/database.php');
-// require('../model/product_db.php');
+require('../model/product_db.php');
 
-if (isset($_POST['action'])) {
-    $action = $_POST['action'];
-} else if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-} else {
-    $action = 'under_construction';
+$action = filter_input(INPUT_POST, 'action');
+if ($action == NULL) {
+    $action = filter_input(INPUT_GET, 'action');
+    if ($action == NULL) {
+        $action = 'list_products';
+    }
 }
 
-if ($action == 'under_construction') {
-    include('../under_construction.php');
+// products
+if ($action == 'list_products') {
+    // list all products
+    $code = filter_input(INPUT_GET, 'code', 
+            FILTER_VALIDATE_INT); // is this necessary?
+    if ($code == NULL || $code == FALSE) {
+        $code = 0; // is this necessary?
+    }
+    $products = get_all_products();
+    $product = get_product($code); // is this necessary?
+   include('product_list.php');
+} else if ($action == 'delete_product') {
+    // delete a product
+    $code = filter_input(INPUT_POST, 'code', 
+            FILTER_VALIDATE_INT);
+    if ($code == NULL || $code == FALSE) {
+        $error = "Missing or incorrect product code.";
+        include('../errors/error.php');
+    } else { 
+        delete_product($code);
+        header("Location: .");
+    }
+} else if ($action == 'show_add_form') {
+    // call page to add a product
+    include('product_add.php');    
+} else if ($action == 'add_product') {
+    // add a product
+    $code = filter_input(INPUT_POST, 'code');
+    $name = filter_input(INPUT_POST, 'name');
+    $version = filter_input(INPUT_POST, 'version');
+    $date = filter_input(INPUT_POST, 'date');
+    if ($code == NULL || $code == FALSE || 
+        $name == NULL || $name == FALSE || 
+        $version == NULL || $version == FALSE ||
+        $date == NULL || $date == FALSE) {
+        $error = "Invalid product data. Check all fields and try again.";
+        include('../errors/error.php');
+    } else { 
+        add_product($code, $name, $version, $date);
+        header("Location: .");
+    }
 }
 ?>
