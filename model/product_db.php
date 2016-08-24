@@ -24,7 +24,7 @@ function get_product($code) {
 function delete_product($code) {
     global $db;
     $query = 'DELETE FROM products
-              WHERE code = :code';
+              WHERE productCode = :code';
     $statement = $db->prepare($query);
     $statement->bindValue(':code', $code);
     $statement->execute();
