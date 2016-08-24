@@ -2,7 +2,7 @@
 function get_all_products() {
     global $db;
     $query = 'SELECT * FROM products
-              ORDER BY code';
+              ORDER BY productCode';
     $statement = $db->prepare($query);
     $statement->execute();
     $products = $statement->fetchAll();
@@ -12,7 +12,7 @@ function get_all_products() {
 function get_product($code) {
     global $db;
     $query = 'SELECT * FROM products
-              WHERE code = :code';
+              WHERE productCode = :code';
     $statement = $db->prepare($query);
     $statement->bindValue(":code", $code);
     $statement->execute();

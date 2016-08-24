@@ -13,17 +13,11 @@ if ($action == NULL) {
 // products
 if ($action == 'list_products') {
     // list all products
-    $code = filter_input(INPUT_GET, 'code', 
-            FILTER_VALIDATE_INT); // is this necessary?
-    if ($code == NULL || $code == FALSE) {
-        $code = 0; // is this necessary?
-    }
     $products = get_all_products();
-    $product = get_product($code); // is this necessary?
    include('product_list.php');
 } else if ($action == 'delete_product') {
     // delete a product
-    $code = filter_input(INPUT_POST, 'code', 
+    $code = filter_input(INPUT_POST, 'productCode', 
             FILTER_VALIDATE_INT);
     if ($code == NULL || $code == FALSE) {
         $error = "Missing or incorrect product code.";
@@ -37,10 +31,10 @@ if ($action == 'list_products') {
     include('product_add.php');    
 } else if ($action == 'add_product') {
     // add a product
-    $code = filter_input(INPUT_POST, 'code');
+    $code = filter_input(INPUT_POST, 'productCode');
     $name = filter_input(INPUT_POST, 'name');
     $version = filter_input(INPUT_POST, 'version');
-    $date = filter_input(INPUT_POST, 'date');
+    $date = filter_input(INPUT_POST, 'releaseDate');
     if ($code == NULL || $code == FALSE || 
         $name == NULL || $name == FALSE || 
         $version == NULL || $version == FALSE ||
