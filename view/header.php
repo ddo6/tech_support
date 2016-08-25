@@ -14,6 +14,6 @@
         <div id="header">
             <h1>SportsPro Technical Support</h1>
             <p>Sports management software for the sports enthusiast</p>
-            <ul class="nav"><li><a href="/project_start/tech_support/">Home</a></li></ul>
+            <ul class="nav"><li><a href="../../tech_support">Home</a></li></ul>
         </div>
        
