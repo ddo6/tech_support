@@ -21,7 +21,7 @@
                 <td><?php echo $technician['phone']; ?></td>
                 <td><?php echo $technician['password']; ?></td>
                 <!-- delete the technician -->
-                <td><form action="." method="post">
+                <td><form action="" method="post">
                     <input type="hidden" name="action"
                            value="delete_technician">
                     <input type="hidden" name="id"

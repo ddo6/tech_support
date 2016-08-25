@@ -19,7 +19,7 @@
                 <td><?php echo $product['version']; ?></td>
                 <td><?php echo $product['releaseDate']; ?></td>
                 <!-- delete the product -->
-                <td><form action="." method="post">
+                <td><form action="" method="post">
                     <input type="hidden" name="action"
                            value="delete_product">
                     <input type="hidden" name="code"
