@@ -1,0 +1,38 @@
+* {
+/*    outline: 1px solid red;*/
+}
+
+#main {
+    
+}
+
+#page {
+/*    background-color: #ffffea;*/
+    padding: 3rem;
+}
+
+table {
+    
+}
+
+tr {
+    
+}
+
+td form {
+    margin: 0;
+}
+
+td input[type=submit] {
+    vertical-align: middle;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.tooltip {
+    display: none;
+    margin-left: 2rem;
+}

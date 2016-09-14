@@ -5,13 +5,22 @@
     <head>
         <title>SportsPro Technical Support</title>
         <link rel="stylesheet" type="text/css"
-              href="main.css" />
+              href="normalize.css" />
+        <link rel="stylesheet" type="text/css"
+              href="skeleton.css" />
+        <link rel="stylesheet" type="text/css" href="custom.css" />
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+            
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>    
+        <script src="scripts.js"></script>
     </head>
 
     <!-- the body section -->
     <body>
-    <div id="page">
-        <div id="header">
+    <div id="page" class="container">
+        <div id="header" class="twelve columns">
             <h1>SportsPro Technical Support</h1>
             <p>Sports management software for the sports enthusiast</p>
             <ul class="nav"><li><a href="../tech_support">Home</a></li></ul>
