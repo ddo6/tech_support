@@ -17,7 +17,7 @@
         <br>
         
         <label>Release Date:</label>
-        <input type="text" name="date" /><span>Use 'yyyy-mm-dd' format</span>
+        <input type="text" name="date" class="date" /><span class="tooltip">Use 'yyyy-mm-dd' format</span>
         <br>
 
         <label>&nbsp;</label>
