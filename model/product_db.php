@@ -5,8 +5,7 @@ function get_all_products() {
               ORDER BY productCode';
     $statement = $db->prepare($query);
     $statement->execute();
-    $products = $statement->fetchAll();
-    return $products;
+    return $statement;
 }
 
 function get_product($code) {

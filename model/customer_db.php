@@ -21,6 +21,17 @@ function get_customer($id) {
     return $customer;
 }
 
+function get_customer_by_email($email) {
+    global $db;
+    $query = 'SELECT * FROM customers WHERE email = :email';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $customer = $statement->fetch();
+    $statement->closeCursor();
+    return $customer;
+}
+
 function search_customer($lname) {
     global $db;
     $query = 'SELECT * FROM customers
@@ -53,5 +64,18 @@ function update_customer($id, $fname, $lname, $address, $city, $state, $zip, $co
     $statement->bindValue(':password', $password);
     $statement->execute();
     $statement->closeCursor();
+}
+
+function is_valid_customer_login($email) {
+    global $db;
+    $query = '
+        SELECT * FROM customers
+        WHERE email = :email';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $valid = ($statement->rowCount() == 1);
+    $statement->closeCursor();
+    return $valid;
 }
 ?>
