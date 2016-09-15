@@ -26,7 +26,12 @@ switch($action) {
             $customer = get_customer_by_email($email);
             $customer_id = $customer['customerID'];
             $registrations = get_registrations_by_customer($customer_id);
-            include 'incident_add.php';
+            if ($registrations == NULL || $registrations == FALSE) {
+                $error = "Customer has no registered products.";
+                include '../errors/error.php';
+            } else {
+                include 'incident_add.php';
+            }
         }
         break;
     case 'create_incident':

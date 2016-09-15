@@ -24,12 +24,12 @@ switch($action) {
         break;
     case 'login':
         $email = filter_input(INPUT_POST, 'email');
-        if (is_valid_customer_login($email)) {
+        if (!empty($email) && is_valid_customer_login($email)) {
             $customer = get_customer_by_email($email);
             $products = get_all_products();
             include 'product_register.php';
         } else {
-            $error_message = 'Login failed. Invalid email.';
+            $error_message = 'Login failed. Missing or invalid email.';
             include 'customer_login.php';
         }
         break;

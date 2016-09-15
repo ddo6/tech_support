@@ -14,7 +14,7 @@
                value="<?php echo $customers['lastName']; ?>"><br>
         
         <label>Address:</label>
-        <input type="text" name="address"
+        <input type="text" name="address" size="45"
                value="<?php echo $customers['address']; ?>"><br>
         
         <label>City:</label>
@@ -30,7 +30,7 @@
                value="<?php echo $customers['postalCode']; ?>"><br>
         
         <label>Country Code:</label>
-        <input type="text" name="country"
+        <input type="text" name="country" size="5"
                value="<?php echo $customers['countryCode']; ?>"><br>
         
         <label>Phone:</label>
@@ -38,7 +38,7 @@
                value="<?php echo $customers['phone']; ?>"><br>
         
         <label>Email:</label>
-        <input type="text" name="email"
+        <input type="text" name="email" size="40"
                value="<?php echo $customers['email']; ?>"><br>
         
         <label>Password:</label>

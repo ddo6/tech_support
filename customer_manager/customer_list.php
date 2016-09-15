@@ -1,11 +1,12 @@
 <?php include '../view/header.php'; ?>
 <main>
-    <h1>Customer List</h1>
+    <h1>Customer Search</h1>
 
     <div id="main">
         <!-- search customers by last name -->
         <form action="index.php" method="post" id="search_customer">
             <input type="hidden" name="action" value="search_customer">
+            <label>Last Name: </label>
             <input type="text" name="lname" value="">
             <input type="submit" value="Search"><br>
         </form>

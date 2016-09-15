@@ -1,22 +1,20 @@
-* {
-/*    outline: 1px solid red;*/
+/* 
+    custom styles to override/supplement skeleton.css
+*/
+
+div#header {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
 }
 
-#main {
-    
+div#footer {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 2rem;
+    padding-top: 2rem;
 }
 
 #page {
-/*    background-color: #ffffea;*/
     padding: 3rem;
-}
-
-table {
-    
-}
-
-tr {
-    
 }
 
 td form {
@@ -32,7 +30,32 @@ ul {
     list-style: none;
 }
 
+label {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
 .tooltip {
     display: none;
     margin-left: 2rem;
+}
+
+form#add_product_form label, 
+form#add_technician_form label, 
+form#edit_customer_form label, 
+form#incident_form label,
+form#register_form label
+{
+    display: inline-block;
+    min-width: 12rem;
+    margin-bottom: 1rem;
+}
+
+form#incident_form textarea {
+    height: auto;
+    width: auto;
+}
+
+span.error {
+    padding-left: 1rem;
 }
