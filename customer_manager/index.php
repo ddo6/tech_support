@@ -2,6 +2,7 @@
 require_once('../util/main.php');
 require('../model/database.php');
 require('../model/customer_db.php');
+require('../model/country_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -30,6 +31,7 @@ if ($action == 'list_customers') {
     // call page to view or edit customer information
     $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
     $customers = get_customer($id);
+    $countries = get_all_countries();
     include('customer_view.php');
 }   else if ($action == 'update_customer') {
     // update customer information

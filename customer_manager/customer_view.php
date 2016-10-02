@@ -1,4 +1,4 @@
-<?php include '../view/header.php'; ?>
+<?php include ('../view/header.php'); ?>
 <main>
     <h1>View/Update Customer</h1>
     <form action="index.php" method="post" id="edit_customer_form">
@@ -30,8 +30,17 @@
                value="<?php echo $customers['postalCode']; ?>"><br>
         
         <label>Country Code:</label>
-        <input type="text" name="country" size="5"
-               value="<?php echo $customers['countryCode']; ?>"><br>
+        <select name="country">
+        <?php foreach ($countries as $country) : ?>
+            <option value="<?php echo $country['countryCode'];?>" 
+            <?php if($country['countryCode']===$customers['countryCode']) {
+                    echo "selected='selected'";
+                  }
+            ?>>
+                <?php echo $country['countryName']; ?>
+            </option>
+        <?php endforeach; ?>
+        </select><br>
         
         <label>Phone:</label>
         <input type="text" name="phone"
@@ -53,4 +62,4 @@
     </p>
 
 </main>
-<?php include '../view/footer.php'; ?>
+<?php include ('../view/footer.php'); ?>
