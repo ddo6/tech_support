@@ -5,10 +5,10 @@
     <head>
         <title>SportsPro Technical Support</title>
         <link rel="stylesheet" type="text/css"
-              href="../normalize.css" />
+              href="<?php echo $app_path ?>/normalize.css" />
         <link rel="stylesheet" type="text/css"
-              href="../skeleton.css" />
-        <link rel="stylesheet" type="text/css" href="../custom.css" />
+              href="<?php echo $app_path ?>/skeleton.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $app_path ?>/custom.css" />
         
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
@@ -23,6 +23,6 @@
         <div id="header" class="twelve columns">
             <h1>SportsPro Technical Support</h1>
             <p>Sports management software for the sports enthusiast</p>
-            <ul class="nav"><li><a href="../../tech_support">Home</a></li></ul>
+            <ul class="nav"><li><a href="<?php echo $app_path ?>">Home</a></li></ul>
         </div>
        
