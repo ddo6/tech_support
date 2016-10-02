@@ -1,4 +1,7 @@
-<?php include 'view/header_root.php'; ?>
+<?php 
+    require_once('util/main.php'); 
+    include ('view/header.php'); 
+?>
 <div id="main">
     <h2>Administrators</h2>
     <ul class="nav">
@@ -20,4 +23,4 @@
         <li><a href="product_register">Register Product</a></li>
     </ul>
 </div>
-<?php include 'view/footer.php'; ?>
+<?php include ('view/footer.php'); ?>
