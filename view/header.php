@@ -4,16 +4,20 @@
     <!-- the head section -->
     <head>
         <title>SportsPro Technical Support</title>
+        
         <link rel="stylesheet" type="text/css"
               href="<?php echo $app_path ?>/normalize.css" />
         <link rel="stylesheet" type="text/css"
               href="<?php echo $app_path ?>/skeleton.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $app_path ?>/custom.css" />
         
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
             
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script src="../scripts.js"></script>
     </head>
 
