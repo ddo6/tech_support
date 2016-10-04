@@ -6,8 +6,7 @@
         <!-- display a table of technicians -->
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Password</th>
@@ -15,8 +14,8 @@
             </tr>
             <?php foreach ($technicians as $technician) : ?>
             <tr>
-                <td><?php echo $technician['firstName']; ?></td>
-                <td><?php echo $technician['lastName']; ?></td>
+                <?php $tech = new Technician($technician['firstName'], $technician['lastName']); ?>
+                <td><?php echo $tech->getFullName(); ?></td>
                 <td><?php echo $technician['email']; ?></td>
                 <td><?php echo $technician['phone']; ?></td>
                 <td><?php echo $technician['password']; ?></td>

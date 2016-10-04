@@ -1,7 +1,8 @@
 <?php
 require_once('../util/main.php');
-require('../model/database.php');
-require('../model/technician_db.php');
+require('../model/database_oo.php');
+require('../model/technician.php');
+require('../model/technician_db_oo.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -15,7 +16,7 @@ if ($action == NULL) {
 switch($action) {
     case 'list_technicians':
         // list all technicians
-        $technicians = get_all_technicians();
+        $technicians = TechnicianDB::get_all_technicians();
        include('technician_list.php');
        break;
     case 'delete_technician':
@@ -25,7 +26,7 @@ switch($action) {
             $error = "Missing or incorrect technician ID.";
             include('../errors/error.php');
         } else { 
-            delete_technician($id);
+            TechnicianDB::delete_technician($id);
             header("Location: .");
         }
         break;
@@ -48,7 +49,7 @@ switch($action) {
             $error = "Invalid technician data. Check all fields and try again.";
             include('../errors/error.php');
         } else { 
-            add_technician($id, $fname, $lname, $email, $phone, $password);
+            TechnicianDB::add_technician($id, $fname, $lname, $email, $phone, $password);
             header("Location: .");
         }
         break;
