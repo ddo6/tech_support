@@ -11,7 +11,7 @@ if ($action == NULL) {
     if ($action == NULL) {        
         $action = 'view_login';
         if (isset($_SESSION['user'])) {
-            $action = 'register_product';
+            $action = 'returning_customer';
         }
     }
 }
@@ -26,7 +26,22 @@ switch($action) {
     case 'login':
         $email = filter_input(INPUT_POST, 'email');
         if (!empty($email) && is_valid_customer_login($email)) {
-            $customer = get_customer_by_email($email);
+            $_SESSION['user'] = get_customer_by_email($email);
+            $customer_name = $_SESSION['user']['firstName'] . ' ' .
+                             $_SESSION['user']['lastName'];
+            $products = get_all_products();
+            include 'product_register.php';
+        } else {
+            $error_message = 'Login failed. Missing or invalid email.';
+            include 'customer_login.php';
+        }
+        break;
+    case 'returning_customer':
+        $email = $_SESSION['user']['email'];
+        if (!empty($email) && is_valid_customer_login($email)) {
+            $_SESSION['user'] = get_customer_by_email($email);
+            $customer_name = $_SESSION['user']['firstName'] . ' ' .
+                             $_SESSION['user']['lastName'];
             $products = get_all_products();
             include 'product_register.php';
         } else {
@@ -35,11 +50,30 @@ switch($action) {
         }
         break;
     case 'register_product':
-        $customer = filter_input(INPUT_POST, 'customer');
+        $customer = $_SESSION['user']['customerID'];
         $code = filter_input(INPUT_POST, 'code');
         $date = date('Y-m-d');
         add_registration($customer, $code, $date);
         include 'registration_confirmation.php';
+        break;
+    case 'logout':
+        // End session
+        $_SESSION = array();
+        session_destroy();
+        
+        // Delete cookie from browser
+        $name = session_name();
+        $expire = strtotime('-1 year');
+        $params = session_get_cookie_params();
+        $path = $params['path'];
+        $domain = $params['domain'];
+        $secure = $params['secure'];
+        $httponly = $params['httponly'];
+        setcookie($name, '', $expire, $path, $domain, $secure, $httponly);
+        
+        // Return to login page
+        $email = '';
+        include 'customer_login.php';
         break;
     default:
         display_error("Unknown action: " . $action);
