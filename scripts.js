@@ -1,8 +1,7 @@
 $(document).ready(function(){
-    $('input.date').focusin(function() {
-        $('.tooltip').show();
+    $(function() {
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
     });
-    $('input.date').focusout(function() {
-        $('.tooltip').hide();
-    })
 });
