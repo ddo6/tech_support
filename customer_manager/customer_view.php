@@ -7,33 +7,39 @@
 
         <label>First Name:</label>
         <input type="text" name="fname"
-               value="<?php echo $customers['firstName']; ?>"><br>
+               value="<?php echo htmlspecialchars($fname); ?>">
+        <?php echo $fields->getField('fname')->getHTML(); ?><br>
 
         <label>Last Name:</label>
         <input type="text" name="lname"
-               value="<?php echo $customers['lastName']; ?>"><br>
+               value="<?php echo htmlspecialchars($lname); ?>">
+        <?php echo $fields->getField('lname')->getHTML(); ?><br>
         
         <label>Address:</label>
         <input type="text" name="address" size="45"
-               value="<?php echo $customers['address']; ?>"><br>
+               value="<?php echo htmlspecialchars($address); ?>">
+        <?php echo $fields->getField('address')->getHTML(); ?><br>
         
         <label>City:</label>
         <input type="text" name="city"
-               value="<?php echo $customers['city']; ?>"><br>
+               value="<?php echo htmlspecialchars($city); ?>">
+        <?php echo $fields->getField('city')->getHTML(); ?><br>
         
         <label>State:</label>
         <input type="text" name="state"
-               value="<?php echo $customers['state']; ?>"><br>
+               value="<?php echo htmlspecialchars($state); ?>">
+        <?php echo $fields->getField('state')->getHTML(); ?><br>
         
         <label>Postal Code:</label>
         <input type="text" name="zip"
-               value="<?php echo $customers['postalCode']; ?>"><br>
+               value="<?php echo htmlspecialchars($zip); ?>">
+        <?php echo $fields->getField('zip')->getHTML(); ?><br>
         
         <label>Country Code:</label>
         <select name="country">
         <?php foreach ($countries as $country) : ?>
             <option value="<?php echo $country['countryCode'];?>" 
-            <?php if($country['countryCode']===$customers['countryCode']) {
+            <?php if($country['countryCode']===$customer['countryCode']) {
                     echo "selected='selected'";
                   }
             ?>>
@@ -44,15 +50,18 @@
         
         <label>Phone:</label>
         <input type="text" name="phone"
-               value="<?php echo $customers['phone']; ?>"><br>
+               value="<?php echo htmlspecialchars($phone); ?>">
+        <?php echo $fields->getField('phone')->getHTML(); ?><br>
         
         <label>Email:</label>
         <input type="text" name="email" size="40"
-               value="<?php echo $customers['email']; ?>"><br>
+               value="<?php echo htmlspecialchars($email); ?>">
+        <?php echo $fields->getField('email')->getHTML(); ?><br>
         
         <label>Password:</label>
         <input type="text" name="password"
-               value="<?php echo $customers['password']; ?>"><br>
+               value="<?php echo htmlspecialchars($password); ?>">
+        <?php echo $fields->getField('password')->getHTML(); ?><br>
         
         <label>&nbsp;</label>
         <input type="submit" value="Update Customer"><br>
