@@ -64,6 +64,8 @@ switch($action) {
     case 'update_customer':
         // update customer information
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $customer = get_customer($id);
+        $countries = get_all_countries();
         $fname = trim(filter_input(INPUT_POST, 'fname'));
         $lname = trim(filter_input(INPUT_POST, 'lname'));
         $address = trim(filter_input(INPUT_POST, 'address'));
