@@ -5,7 +5,8 @@ function get_all_registrations() {
               ORDER BY customerID';
     $statement = $db->prepare($query);
     $statement->execute();
-    return $statement;
+    $registrations = $statement->fetchAll();
+    return $registrations;
 }
 
 function add_registration($customer, $code, $date) {
