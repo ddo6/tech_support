@@ -4,22 +4,32 @@ class TechnicianDB {
         $db = Database::getDB();
         $query = 'SELECT * FROM technicians
                   ORDER BY techID';
-        $statement = $db->prepare($query);
-        $statement->execute();
-        $technicians = $statement->fetchAll();
-        return $technicians;
+        try {
+            $statement = $db->prepare($query);
+            $statement->execute();
+            $technicians = $statement->fetchAll();
+            return $technicians;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            Database::display_db_error($error_message);
+        }
     }
 
     public static function get_technician($id) {
         $db = Database::getDB();
         $query = 'SELECT * FROM technicians
                   WHERE techID = :id';
-        $statement = $db->prepare($query);
-        $statement->bindValue(":id", $id);
-        $statement->execute();
-        $technician = $statement->fetch();
-        $statement->closeCursor();
-        return $technician;
+        try {
+            $statement = $db->prepare($query);
+            $statement->bindValue(":id", $id);
+            $statement->execute();
+            $technician = $statement->fetch();
+            $statement->closeCursor();
+            return $technician;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            Database::display_db_error($error_message);
+        }
     }
 
     public static function delete_technician($id) {

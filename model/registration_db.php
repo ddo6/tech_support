@@ -3,10 +3,15 @@ function get_all_registrations() {
     global $db;
     $query = 'SELECT * FROM registrations
               ORDER BY customerID';
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $registrations = $statement->fetchAll();
-    return $registrations;
+    try {
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $registrations = $statement->fetchAll();
+        return $registrations;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
 }
 
 function add_registration($customer, $code, $date) {
@@ -29,13 +34,15 @@ function get_registrations_by_customer($customer_id) {
               ON r.productCode = p.productCode
               WHERE customerID = :customer_id
               ORDER BY r.productCode';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':customer_id', $customer_id);
-    $statement->execute();
-    $registrations = $statement->fetchAll();
-    return $registrations;
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':customer_id', $customer_id);
+        $statement->execute();
+        $registrations = $statement->fetchAll();
+        return $registrations;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }   
 }
-
-
-
 ?>

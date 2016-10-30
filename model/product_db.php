@@ -3,22 +3,32 @@ function get_all_products() {
     global $db;
     $query = 'SELECT * FROM products
               ORDER BY productCode';
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $products = $statement->fetchAll();
-    return $products;
+    try {
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $products = $statement->fetchAll();
+        return $products;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
 }
 
 function get_product($code) {
     global $db;
     $query = 'SELECT * FROM products
               WHERE productCode = :code';
-    $statement = $db->prepare($query);
-    $statement->bindValue(":code", $code);
-    $statement->execute();
-    $product = $statement->fetch();
-    $statement->closeCursor();
-    return $product;
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(":code", $code);
+        $statement->execute();
+        $product = $statement->fetch();
+        $statement->closeCursor();
+        return $product;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
 }
 
 function delete_product($code) {
