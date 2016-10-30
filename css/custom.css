@@ -42,7 +42,7 @@ label {
 
 form#add_product_form label, 
 form#add_technician_form label, 
-form#edit_customer_form label, 
+form#add_edit_customer_form label, 
 form#incident_form label,
 form#register_form label
 {
@@ -59,4 +59,8 @@ form#incident_form textarea {
 span.error {
     padding-left: 1rem;
     color: red;
+}
+
+h3 a {
+    font-size: 0.8em;
 }
