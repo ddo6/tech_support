@@ -9,7 +9,7 @@
         <li><a href="technician_manager">Manage Technicians</a></li>
         <li><a href="customer_manager">Manage Customers</a></li>
         <li><a href="incident_create">Create Incident</a></li>
-        <li><a href="under_construction.php">Assign Incident</a></li>
+        <li><a href="incident_assign">Assign Incident</a></li>
         <li><a href="under_construction.php">Display Incidents</a></li>
     </ul>
 

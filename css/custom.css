@@ -44,7 +44,8 @@ form#add_product_form label,
 form#add_technician_form label, 
 form#add_edit_customer_form label, 
 form#incident_form label,
-form#register_form label
+form#register_form label,
+form#assign_incident_form label
 {
     display: inline-block;
     min-width: 12rem;
