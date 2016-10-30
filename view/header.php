@@ -6,10 +6,10 @@
         <title>SportsPro Technical Support</title>
         
         <link rel="stylesheet" type="text/css"
-              href="<?php echo $app_path ?>/normalize.css" />
+              href="<?php echo $app_path ?>/css/normalize.css" />
         <link rel="stylesheet" type="text/css"
-              href="<?php echo $app_path ?>/skeleton.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $app_path ?>/custom.css" />
+              href="<?php echo $app_path ?>/css/skeleton.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $app_path ?>/css/custom.css" />
         
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         
@@ -18,7 +18,7 @@
             
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script src="../scripts.js"></script>
+        <script src="<?php echo $app_path ?>/js/scripts.js"></script>
     </head>
 
     <!-- the body section -->
