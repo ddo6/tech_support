@@ -63,6 +63,28 @@ function search_customer($lname) {
     }   
 }
 
+function add_customer($id, $fname, $lname, $address, $city, $state, $zip, $country, $phone, $email, $password) {
+    global $db;
+    $query = 'INSERT INTO customers
+                (customerID, firstName, lastName, address, city, state, postalCode, countryCode, phone, email, password)
+              VALUES
+                (:id, :fname, :lname, :address, :city, :state, :zip, :country, :phone, :email, :password)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->bindValue(':fname', $fname);
+    $statement->bindValue(':lname', $lname);
+    $statement->bindValue(':address', $address);
+    $statement->bindValue(':city', $city);
+    $statement->bindValue(':state', $state);
+    $statement->bindValue(':zip', $zip);
+    $statement->bindValue(':country', $country);
+    $statement->bindValue(':phone', $phone);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $password);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 function update_customer($id, $fname, $lname, $address, $city, $state, $zip, $country, $phone, $email, $password) {
     global $db;
     $query = 'UPDATE customers
