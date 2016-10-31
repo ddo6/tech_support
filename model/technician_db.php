@@ -21,6 +21,22 @@ function get_technician($id) {
     return $technician;
 }
 
+function get_technician_by_email($email) {
+    global $db;
+    $query = 'SELECT * FROM technicians WHERE email = :email';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $technician = $statement->fetch();
+        $statement->closeCursor();
+        return $technician;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
 function delete_technician($id) {
     global $db;
     $query = 'DELETE FROM technicians
@@ -46,5 +62,17 @@ function add_technician($id, $fname, $lname, $email, $phone, $password) {
     $statement->bindValue(':password', $password);
     $statement->execute();
     $statement->closeCursor();
+}
+
+function is_valid_tech_login($email) {
+    global $db;
+    $query = 'SELECT * FROM technicians
+              WHERE email = :email';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $valid = ($statement->rowCount() == 1);
+    $statement->closeCursor();
+    return $valid;
 }
 ?>

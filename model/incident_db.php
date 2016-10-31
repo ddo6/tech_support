@@ -33,6 +33,22 @@ function get_incident_by_id($id) {
     }
 }
 
+function get_assigned_incidents($id) {
+    global $db;
+    $query = 'SELECT * FROM incidents i LEFT JOIN customers c
+              ON i.customerID = c.customerID WHERE (techID = :id) AND (dateClosed IS NULL)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        $incidents = $statement->fetchAll();
+        return $incidents;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
 function count_assigned_incidents_by_technicians() {
     global $db;
     $query = 'SELECT t.techID, t.firstName, t.lastName, 
@@ -80,6 +96,31 @@ function assign_incident($incident_id, $tech_id) {
     $statement = $db->prepare($query);
     $statement->bindValue(':incident_id', $incident_id);
     $statement->bindValue(':tech_id', $tech_id);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function update_incident_description($incident_id, $description) {
+    global $db;
+    $query = 'UPDATE incidents
+              SET description = :description
+              WHERE incidentID = :incident_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':incident_id', $incident_id);
+    $statement->bindValue(':description', $description);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function update_incident($incident_id, $date, $description) {
+    global $db;
+    $query = 'UPDATE incidents
+              SET dateClosed = :date, description = :description
+              WHERE incidentID = :incident_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':incident_id', $incident_id);
+    $statement->bindValue(':date', $date);
+    $statement->bindValue(':description', $description);
     $statement->execute();
     $statement->closeCursor();
 }
