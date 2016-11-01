@@ -21,7 +21,6 @@ switch($action) {
         break;
     case 'list_assigned_incidents':
         $incidents = get_all_assigned_incidents();
-        $customer_name = $incident('c.firstName');
         include('assigned_incidents.php');
         break;
     default:
