@@ -108,13 +108,14 @@ function update_customer($id, $fname, $lname, $address, $city, $state, $zip, $co
     $statement->closeCursor();
 }
 
-function is_valid_customer_login($email) {
+function is_valid_customer_login($email, $password) {
     global $db;
     $query = '
         SELECT * FROM customers
-        WHERE email = :email';
+        WHERE email = :email AND password = :password';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $password);
     $statement->execute();
     $valid = ($statement->rowCount() == 1);
     $statement->closeCursor();

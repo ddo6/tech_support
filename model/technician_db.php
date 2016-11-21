@@ -64,12 +64,13 @@ function add_technician($id, $fname, $lname, $email, $phone, $password) {
     $statement->closeCursor();
 }
 
-function is_valid_tech_login($email) {
+function is_valid_tech_login($email, $password) {
     global $db;
     $query = 'SELECT * FROM technicians
-              WHERE email = :email';
+              WHERE email = :email AND password = :password';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $password);
     $statement->execute();
     $valid = ($statement->rowCount() == 1);
     $statement->closeCursor();
