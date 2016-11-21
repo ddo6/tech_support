@@ -1,5 +1,6 @@
 <?php
 require_once('../util/main.php');
+require_once('../util/secure_conn.php');
 require('../model/database.php');
 require('../model/incident_db.php');
 require('../model/customer_db.php');
@@ -10,9 +11,10 @@ $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {        
-        $action = 'view_login';
         if (isset($_SESSION['tech_user'])) {
             $action = 'returning_tech';
+        } else {
+            $action = 'view_login';
         }
     }
 }
@@ -20,11 +22,13 @@ if ($action == NULL) {
 switch($action) {
     case 'view_login':
         $email = '';
+        $password = '';
         include('tech_login.php');
         break;
     case 'login':
         $email = filter_input(INPUT_POST, 'email');
-        if (!empty($email) && is_valid_tech_login($email)) {
+        $password = filter_input(INPUT_POST, 'password');
+        if (!empty($email) && !empty($password) && is_valid_tech_login($email, $password)) {
             $_SESSION['tech_user'] = get_technician_by_email($email);
             $technician_name = $_SESSION['tech_user']['firstName'] . ' ' .
                              $_SESSION['tech_user']['lastName'];
@@ -32,13 +36,15 @@ switch($action) {
             $incidents = get_assigned_incidents($tech_id);
             include('select_incident.php');
         } else {
-            $error_message = 'Login failed. Missing or invalid email.';
+            $error_message = 'Login failed. Missing or invalid email/password.';
+            $password = '';
             include('tech_login.php');
         }
         break;
     case 'returning_tech':
         $email = $_SESSION['tech_user']['email'];
-        if (!empty($email) && is_valid_tech_login($email)) {
+        $password = $_SESSION['tech_user']['password'];
+        if (!empty($email) && !empty($password) && is_valid_tech_login($email, $password)) {
             $_SESSION['tech_user'] = get_technician_by_email($email);
             $technician_name = $_SESSION['tech_user']['firstName'] . ' ' .
                              $_SESSION['tech_user']['lastName'];
@@ -46,7 +52,8 @@ switch($action) {
             $incidents = get_assigned_incidents($tech_id);
             include('select_incident.php');
         } else {
-            $error_message = 'Login failed. Missing or invalid email.';
+            $error_message = 'Login failed. Missing or invalid email/password.';
+            $password = '';
             include('tech_login.php');
         }
         break;
@@ -93,9 +100,10 @@ switch($action) {
         $httponly = $params['httponly'];
         setcookie($name, '', $expire, $path, $domain, $secure, $httponly);
         
-        // Return to login page
+        // Reset email and password and return to main menu
         $email = '';
-        include('tech_login.php');
+        $password = '';
+        header("Location: ". $app_path);
         break;
     default:
         display_error("Unknown action: " . $action);
