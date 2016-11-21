@@ -9,6 +9,12 @@
             <label>E-Mail:</label>
             <input type="text" name="email"
                    value="<?php echo htmlspecialchars($email); ?>" size="30">
+            <br />
+
+            <label>Password:</label>
+            <input type="password" name="password"
+                   value="<?php echo htmlspecialchars($password); ?>" size="30">
+            <br />
 
             <input type="submit" value="Login">
             <?php if (!empty($error_message)) : ?>         
